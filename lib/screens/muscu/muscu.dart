@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart ';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:todoapponline/screens/muscu/detail/detail_session.dart';
 
 class MuscuScreen extends StatefulWidget {
   final ParseUser user;
@@ -51,20 +52,41 @@ class _MuscuScreenState extends State<MuscuScreen> {
             Container(
               margin: EdgeInsets.all(10),
               child: ListTile(
+                onTap: () {
+                  print('test');
+                  var query = QueryBuilder<ParseObject>(ParseObject('Training'))
+                    ..whereEqualTo('objectId', allTraining[i]['objectId']);
+
+                  query.query().then((value) {
+                    var train = value.results![0].toJson();
+                    // redirect to the training session focus on the training session
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailMuscuScreen(
+                          user: widget.user,
+                          train: train,
+                        ),
+                      ),
+                    );
+                  });
+
+                  print(allTraining[i]['objectId']);
+                },
                 tileColor: Colors.blueGrey,
                 title: Text(allTraining[i]['titre']),
                 subtitle: Text(allTraining[i]['createdAt']),
                 leading: Icon(Icons.fitness_center),
                 // icon 3 points
                 trailing: PopupMenuButton(
-                  itemBuilder: (context) => [
+                  itemBuilder: (context) => const [
                     PopupMenuItem(
-                      child: Text('Modifier'),
                       value: "edit",
+                      child: Text('Modifier'),
                     ),
                     PopupMenuItem(
-                      child: Text('Supprimer'),
                       value: "delete",
+                      child: Text('Supprimer'),
                     ),
                   ],
                   onSelected: (value) {
@@ -76,9 +98,6 @@ class _MuscuScreenState extends State<MuscuScreen> {
                     }
                   },
                 ),
-                onTap: () {
-                  print('test');
-                },
               ),
             ),
           // ListView.builder(

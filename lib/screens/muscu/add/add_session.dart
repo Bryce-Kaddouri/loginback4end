@@ -24,9 +24,14 @@ class _AddSessionState extends State<AddSession> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Session'),
+        title: const Text('Add Session'),
       ),
       body: Container(
+        margin: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
         child: Form(
           child: Column(
             children: [

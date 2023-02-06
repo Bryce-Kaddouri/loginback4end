@@ -13,13 +13,6 @@ void main() async {
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, autoSendSessionId: true);
   runApp(const MyApp());
-
-  // var firstObject = ParseObject('FirstClass')
-  //   ..set(
-  //       'message', 'Hey ! First message from Flutter. Parse is now connected');
-  // await firstObject.save();
-
-  // print('done');
 }
 
 class MyApp extends StatelessWidget {
@@ -30,11 +23,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Todo App Online',
       theme: ThemeData.dark(
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
       // initialRoute: SplashScreen().toString(),
     );
   }
@@ -52,7 +45,7 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Splash Screen'),
+            const Text('Splash Screen'),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -62,7 +55,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Go to Home'),
+              child: const Text('Go to Login Screen'),
             ),
           ],
         ),

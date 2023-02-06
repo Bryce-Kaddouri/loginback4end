@@ -18,12 +18,12 @@ class SignUp extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Sign UP Screen'),
+              const Text('Sign UP Screen'),
               TextFormField(
                 controller: _usernameController,
                 decoration: const InputDecoration(
@@ -31,7 +31,7 @@ class SignUp extends StatelessWidget {
                   labelText: 'username',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -77,23 +77,20 @@ class SignUp extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Error'),
+                          title: const Text('Error'),
                           content: Text(response.error!.message),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         );
                       },
                     );
                   }
-
-                  // ignore: use_build_context_synchronously
-                  // Navigator.pushReplacementNamed(context, '/login');
                 },
                 child: const Text('Singup'),
               ),
