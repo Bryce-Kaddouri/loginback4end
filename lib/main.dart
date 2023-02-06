@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:todoapponline/screens/login/login.dart';
+// http package
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final keyApplicationId = '0bBJhrlnnbmyJAxwCQNtQd1Z0BgIKKlOiYKBpfBK';
-  final keyClientKey = '01xz1WGEZD8lWhZupNNcumPguSDI4r1RKTKPtIFe';
-  final keyParseServerUrl = 'https://parseapi.back4app.com';
+  const keyApplicationId = 'H2IKWJa0fREs9I60bsMztESNp8PmE1a6PTZ6da3W';
+  const keyClientKey = 'AeXGdeibFlJiJiQ8tbUdLqaItxnN2SloBPTz2b2M';
+  const keyParseServerUrl = 'https://parseapi.back4app.com';
 
   await Parse().initialize(keyApplicationId, keyParseServerUrl,
       clientKey: keyClientKey, autoSendSessionId: true);
   runApp(const MyApp());
 
-  var firstObject = ParseObject('FirstClass')
-    ..set(
-        'message', 'Hey ! First message from Flutter. Parse is now connected');
-  await firstObject.save();
+  // var firstObject = ParseObject('FirstClass')
+  //   ..set(
+  //       'message', 'Hey ! First message from Flutter. Parse is now connected');
+  // await firstObject.save();
 
-  print('done');
+  // print('done');
 }
 
 class MyApp extends StatelessWidget {
@@ -26,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.dark(
         useMaterial3: true,
@@ -41,13 +45,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // global
     return SafeArea(
         child: Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Splash Screen'),
+            Text('Splash Screen'),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -57,89 +62,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('Go to Home'),
-            ),
-          ],
-        ),
-      ),
-    ));
-  }
-}
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: Container(
-        margin: EdgeInsets.all(20),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Login Screen'),
-              TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'email',
-                ),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                keyboardType: TextInputType.visiblePassword,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'password',
-                ),
-              ),
-              SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
-                  //
-                },
-                child: const Text('Login'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ));
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Home Screen'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/login');
-              },
-              child: const Text('Go to Login'),
+              child: Text('Go to Home'),
             ),
           ],
         ),

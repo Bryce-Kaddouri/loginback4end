@@ -1,5 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.todoapponline">
+    <!-- authorization for use internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- authorization for use internet-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+    <!-- authorization for use internet-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
+    <!-- authorization for use internet-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <!-- authorization for use internet-->
+    
    <application
         android:label="todoapponline"
         android:name="${applicationName}"
