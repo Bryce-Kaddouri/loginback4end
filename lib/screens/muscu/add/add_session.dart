@@ -68,7 +68,8 @@ class _AddSessionState extends State<AddSession> {
 
                     var session = ParseObject('Training')
                       ..set('titre', _titleController.text)
-                      ..set('description', _descriptionController.text);
+                      ..set('description', _descriptionController.text)
+                      ..set('taches', []);
                     // atach the trqining to the user who created it (the current user)
                     // ..addRelation('idUser', widget.user);
 

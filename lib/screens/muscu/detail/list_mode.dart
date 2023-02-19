@@ -13,8 +13,8 @@ class ListModeDetailMuscu extends StatefulWidget {
 }
 
 class _ListModeDetailMuscuState extends State<ListModeDetailMuscu> {
-  List<Map<String, dynamic>> details = [];
-  List<Map<String, dynamic>> taches = [];
+  List<Map<String, dynamic>>? details = [];
+  List<Map<String, dynamic>?> taches = [];
 
   @override
   initState() {
@@ -28,7 +28,7 @@ class _ListModeDetailMuscuState extends State<ListModeDetailMuscu> {
 
       query.query().then((value) {
         setState(() {
-          details.insertAll(0, value.results!.map((e) => e.toJson()));
+          details!.insertAll(0, value.results!.map((e) => e.toJson()));
           // taches.insertAll(0, value.results!.map((e) => e.toJson()));
         });
       });
@@ -43,45 +43,60 @@ class _ListModeDetailMuscuState extends State<ListModeDetailMuscu> {
 
   @override
   Widget build(BuildContext context) {
-    List taches = widget.train['taches'];
-    print('************************************');
-    print(taches);
-    if (taches.length > 0) {
-      return ListView.builder(
-        itemCount: taches.length,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.blueGrey[50],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: ListTile(
-              tileColor: Colors.blueGrey[50],
-              dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: 4),
-              title: Text(
-                taches[index]['titre'],
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-                textAlign: TextAlign.center,
-              ),
-              subtitle: Text(
-                taches[index]['id'],
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.black),
-              ),
-            ),
-          );
-        },
-      );
-    } else {
-      return Container(
-        child: Text('ListModeDetailMuscu'),
-      );
-    }
+    return taches.isEmpty
+        ? const Text(
+            'Aucun exercice appuyer sur (+) pour ajouter un exercice !')
+        : ListView.builder(
+            itemCount: taches.length,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 226, 225, 225),
+                  boxShadow: const [
+                    BoxShadow(
+                      // color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 1,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  tileColor: Colors.blueGrey,
+                  title: Text(taches[index]!['titre'],
+                      style: const TextStyle(
+                          color: Colors.black87,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20)),
+                  subtitle: Text(taches[index]!['description'],
+                      style: const TextStyle(color: Colors.black54)),
+                  leading: const Icon(Icons.fitness_center,
+                      size: 40, color: Colors.black87),
+                  // icon 3 points
+                  trailing: PopupMenuButton(
+                    itemBuilder: (context) => const [
+                      PopupMenuItem(
+                        value: "edit",
+                        child: Text('Modifier'),
+                      ),
+                      PopupMenuItem(
+                        value: "delete",
+                        child: Text('Supprimer'),
+                      ),
+                    ],
+                    onSelected: (value) {
+                      if (value == "edit") {
+                        print('edit');
+                      } else if (value == "delete") {
+                        print('delete');
+                      }
+                    },
+                  ),
+                ),
+              );
+            });
   }
 
   // function to get the list of taches

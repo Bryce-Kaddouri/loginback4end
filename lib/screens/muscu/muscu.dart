@@ -100,15 +100,6 @@ class _MuscuScreenState extends State<MuscuScreen> {
                 ),
               ),
             ),
-          // ListView.builder(
-          //   itemCount: length,
-          //   itemBuilder: (context, index) {
-          //     return ListTile(
-          //       title: Text("test"),
-          //       // subtitle: Text(allTraining[index]['createdAt']),
-          //     );
-          //   },
-          // ),
         ],
       ),
     );

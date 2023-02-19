@@ -67,12 +67,24 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  // afficher loading dialog le temps de la requete
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const AlertDialog(
+                          title: Text('Loading'),
+                          content: CircularProgressIndicator(),
+                        );
+                      });
                   String username = _usernameController.text;
                   String email = _emailController.text;
                   String password = _passwordController.text;
+                  print(username);
+                  print(password);
 
-                  var user = ParseUser(username, password, email);
+                  var user = ParseUser(username, password, "");
                   var response = await user.login();
+                  print(response.success);
 
                   if (response.success) {
                     print('success');
