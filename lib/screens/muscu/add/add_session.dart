@@ -29,7 +29,7 @@ class _AddSessionState extends State<AddSession> {
       body: Container(
         margin: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: Color.fromRGBO(66, 66, 66, 1),
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Form(
@@ -37,12 +37,12 @@ class _AddSessionState extends State<AddSession> {
             children: [
               TextFormField(
                 controller: _titleController,
-                // validator: (value) {
-                //   if (value == null || value.isEmpty) {
-                //     return 'Please enter some text';
-                //   }
-                //   return null;
-                // },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Titre',
@@ -70,8 +70,6 @@ class _AddSessionState extends State<AddSession> {
                       ..set('titre', _titleController.text)
                       ..set('description', _descriptionController.text)
                       ..set('taches', []);
-                    // atach the trqining to the user who created it (the current user)
-                    // ..addRelation('idUser', widget.user);
 
                     var currentUser = ParseUser.currentUser()!;
                     var response = session.save();
